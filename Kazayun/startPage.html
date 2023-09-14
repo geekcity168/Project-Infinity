@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css\style.css">
+</head> 
+<body>
+    <div id="changer">
+
+    </div>
+    <div class="login-cont">
+        
+            <input type="text" id="userName" placeholder="Input Username"><br>
+            <input type="password" id="paswd" placeholder="Input Password"><br>
+            <input type="button" value="Login" class="login" onclick="verifyLogin()">
+            <br>
+            <div id="alt">Don't have account yet? <span><a href="sign-up.html">Sign Up</a></span></div>
+            <div id="errText">Account not available! Please consult Admin.</div>
+
+            <script>
+                let username = document.querySelector("#userName");
+                let password = document.querySelector("#paswd");
+
+                let altLog = document.getElementById('alt');
+
+                user = "geek city"
+                key = "kazayun"
+
+                function verifyLogin() {
+                    if ( username.value == user && password.value == key) {
+                      var response = confirm(`Welcome ${user}. Do you want to continue as User?`);
+
+                      if (response == true) {
+                        window.open('dashboard.html');
+                      }
+                      else {
+                        alert("Please sign up or consult admin");
+                      }
+                        
+                    }
+                    else {
+                        altLog.style.display = "none";
+                        document.getElementById('errText')
+                            .style.display = "block";
+                    }
+                }
+            </script>
+        
+    </div>
+    <footer>
+
+        <ul>
+            <li><a href="#"><img src="image/facebook.png" class="social-footer"><span>Facebook</span></a></li>
+            <li><a href="#"><img src="image/twitter.png" class="social-footer"><span>Twitter</span></a></li>
+            <li><a href="#"><img src="image/instagram.png" class="social-footer"><span>Instagram</span></a></li>
+            <li><a href="#"><img src="image/whatsapp.png" class="social-footer"><span>Whatsapp</span></a></li><br>
+        Copyright 2023
+        Developed by Jack Samuel (Geek City)
+    </footer>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css\style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="sign-up-cont">
+        <img src="image/dp.png" alt="profile"><br>
+        <input type="file"  id="change-dp">
+
+        <script>
+            const image = document.querySelector("img");
+            const choose = document.querySelector("input");
+
+            choose.addEventListener("change", () => {
+                image.src = URL.createObjectURL(choose.files[0]);
+            });
+                
+        </script>
+        <form>
+        <div id="later">
+            <div id="uName"></div>
+            <div id="uEmail"></div>
+            <input type="password" placeholder="Set Password" id="passwd" required>
+            <br><button><a href="dashboard.html">Finish</a></button>
+        </div>
+    </form>
+        <div id="inputs">
+        <input type="text" placeholder="First Name" id="fname"><br>
+        <input type="text" placeholder="Last Name" id="lname"><br>
+        <input type="email" placeholder="Email Address" id="email"><br>
+        <input type="tel" placeholder="Phone Number" id="tel"><br>
+        <input type="text" placeholder="National ID" id="nationalID"><br>
+        <select id="country">
+            <option value="0">Select Country</option>
+            <option value="1">United States</option>
+            <option value="2">United Kingdom</option>
+            <option value="3">South Africa</option>
+            <option value="4">Uganda</option>
+            <option value="5">Kenya</option>
+            <option value="6">Ethiopia</option>
+            <option value="7">Tanzania</option>
+            <option value="8">Somalia</option>
+            <option value="9">Russia</option>
+            <option value="10">Nigeria</option>
+        </select>
+        <br>
+        <button class="conButton" onclick="confirmDetails()">Confirm</button>
+    </div>
+        
+        <div id="errMessage">You must enter all the details!</div>
+
+        <script>
+            let firstname = document.querySelector("#fname");
+            let lastname = document.querySelector("#lname");
+            let email = document.querySelector("#email");
+            
+            
+            val = "";
+
+            function confirmDetails(){
+                if (firstname.value == "" && lastname.value == "" && email.value == "") {
+                    document.getElementById('errMessage')
+                        .style.display = "block";
+                }
+                else {
+                    var conFirm = confirm("Do you want to proceed creating an account?");
+                        if (conFirm == true) {
+
+                            document.getElementById('inputs')
+                                .style.display = "none";
+
+                            document.getElementById('later')
+                                .style.display = "block";
+
+                            document.getElementById('uName')
+                                .innerHTML = + firstname.value + lastname.value;
+                            document.getElementById('uEmail')
+                                .innerHTML = + email.value;
+                        }
+                }
+            }
+        </script>
+
+        
+    </div>
+</body>
+</html>

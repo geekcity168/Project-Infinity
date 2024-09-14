@@ -7,46 +7,106 @@
     <title>Login</title>
     <script src="js/main.js"></script>
     <link rel="stylesheet" href="css\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head> 
 <body>
-    <div id="changer">
-
+    <div class="navbar light">
+        <div class="nav-left">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <img src="image/kazayun.png" alt="">
+                </div>
+                <h3>Kazayun Youth</h3>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="dropdown">
+                <button class="btn dropbtn">Services
+                    <i class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Register as Member</a>
+                    <a href="#">View Events</a>
+                    <a href="#">Gallery</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                
+            </div>
+            <div class="btn-cont">
+                <button class="btn light">Dowload guide</button>
+            </div>
+        </div>
     </div>
     <div class="login-cont">
-        
-            <input type="text" id="userName" placeholder="Input Username"><br>
-            <input type="password" id="paswd" placeholder="Input Password"><br>
-            <input type="button" value="Login" class="login" onclick="verifyLogin()">
-            <br>
-            <div id="alt">Don't have account yet? <span><a href="sign-up.html">Sign Up</a></span></div>
-            <div id="errText">Account not available! Please consult Admin.</div>
+            <div class="mb-3 form-h3">
+                <h3>Login</h3>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="" class="form-label">Email or username</label>
+                <input type="text" id="userName" placeholder="Input Username">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="" class="form-label">Password</label>
+                <input type="password" id="paswd" placeholder="Input Password">
+            </div>
+            <div class="mb-3 form-group">
+                <button class="btn primary" onclick="verifyLogin()" id="submitButton">Login</button>
+            </div>
+            <div class="mt-3">
+                <div id="alt">Don't have account yet? <span><a href="sign-up.html">Register</a></span></div>
+                <div id="errText">Incorrect Details. Please try again</div>
+            </div>
 
             <script>
                 let username = document.querySelector("#userName");
                 let password = document.querySelector("#paswd");
+                let submitButton = document.getElementById("submitButton");
 
                 let altLog = document.getElementById('alt');
 
                 user = "geek city"
                 key = "kazayun"
 
-                function verifyLogin() {
-                    if ( username.value == user && password.value == key) {
-                      var response = confirm(`Welcome ${user}. Do you want to continue as User?`);
+                function enableSubmit() {
+                    submitButton.textContent = "Login";
+                    submitButton.style.color = "#fff";
+                    submitButton.style.background = "#45f"
+                }
 
-                      if (response == true) {
-                        window.open('dashboard.html');
-                      }
-                      else {
-                        alert("Please sign up or consult admin");
-                      }
-                        
+                function disableSubmit() {
+                    submitButton.textContent = "Please wait...";
+                    submitButton.style.color = "#333"
+                    submitButton.style.background = "#BEE9F5";
+                }
+
+                function verifyLogin() {
+                    
+                    function handleLogin() {
+                        enableSubmit();
+                        if ( username.value == user && password.value == key) {
+                            
+                                window.open('dashboard.html');    
+                        }
+                         else {
+                            altLog.style.display = "none";
+                            document.getElementById('errText')
+                                .style.display = "block";
+
+                                setTimeout(hideAltLog, 3600);
+                                        
+                        }
                     }
-                    else {
-                        altLog.style.display = "none";
+                    
+
+                    disableSubmit();
+
+                    setTimeout(handleLogin, 3400)
+                }
+
+                function hideAltLog() {
+                    altLog.style.display = "block";
                         document.getElementById('errText')
-                            .style.display = "block";
-                    }
+                            .style.display = "none";
                 }
             </script>
         
